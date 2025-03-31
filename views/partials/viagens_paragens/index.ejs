@@ -1,0 +1,45 @@
+<!--listar -->
+<div class="container mt-4">
+  <div class="table-responsive">
+    <h2 class="text-center mb-4">Lista de Viagens e Paragens</h2>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Origem da Viagem</th>
+          <th scope="col">Destino da Viagem</th>
+          <th scope="col">Paragem</th>
+          <th scope="col" class="text-center">Data de registo</th>
+          <th scope="col" class="text-center">Data da última atualização</th>
+          <th scope="col" class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% viagens_paragens.forEach((viagem_paragem)=> { %>
+          <tr>
+            <td>
+              <%= viagem_paragem.viagem_origem %>
+            </td>
+            <td>
+              <%= viagem_paragem.viagem_destino %>
+            </td>
+            <td>
+              <%= viagem_paragem.paragem_nome %>
+            </td>
+            <td class="col text-center">
+              <%= viagem_paragem.dta_registo.toLocaleDateString('pt') %>
+            </td>
+            <td class="col text-center">
+              <%= viagem_paragem.dta_atualizacao.toLocaleDateString('pt') %>
+            </td>
+            <td class="text-center">
+              <a class="delete" title="" data-toggle="tooltip" data-original-title="Apagar"
+                href="http://localhost:5000/viagens-paragens/delete/<%= viagem_paragem.id_viagem %>/<%= viagem_paragem.id_paragem %>"><i class="fas fa-trash-alt"
+                  style="color: black"></i></a>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="mb-4">
+                <i class="bi bi-check-circle success-icon"></i>
+            </div>
+            <h1 class="display-4 text-success">Compra Concluída com Sucesso!</h1>
+            <p class="lead">Obrigado por sua compra! A sua compra foi registrado no sistema.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4>Detalhes da Compra</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Viagem:</strong> <%= viagem.origem %> - <%= viagem.destino %></p>
+                    <p><strong>Data de Compra:</strong> <%= viagem.dta_registo.toLocaleDateString('pt') %></p>
+                    <p><strong>Método de Pagamento:</strong> <%= viagem.mtd_pagamento %></p>
+                    <p><strong>Valor Total:</strong> <%= viagem.preco %>€</p>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="http://localhost:5000/reservas" class="btn custom-btn btn-lg ml-3">Ver Viagens</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">Login</h2>
+            <% if (typeof error !=='undefined' && error !==null) { %>
+                <div class="alert alert-danger text-center">
+                    <%= error %>
+                </div>
+            <% } %>
+            <form method="post" action="http://localhost:5000/login">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Palavra-passe</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Insira a sua password" required>
+                </div>
+                <button type="submit" class="btn custom-btn w-100">Login</button>
+                <div class="text-center mt-3">
+                    <a href="http://localhost:5000/utilizadores/create">Registar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

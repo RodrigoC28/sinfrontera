@@ -1,0 +1,25 @@
+{
+  "name": "sinfrontera",
+  "version": "1.0.0",
+  "description": "Projeto Final",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "P2",
+    "ismt",
+    "sinfrontera"
+  ],
+  "author": "Leticia Caetano Sosa, Rodrigo Costa",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.11.5",
+    "nodemon": "^3.1.7"
+  }
+}

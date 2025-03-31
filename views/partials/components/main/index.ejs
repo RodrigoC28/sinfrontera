@@ -1,0 +1,96 @@
+<img src="/images/banner.jpeg" class="img-fluid w-100" alt="...">
+<main class="container pb-4">
+    <div class="container my-5">
+        <h2 class="text-center">Planear Viagem</h2>
+        <form id="tripForm" method="get" action="http://localhost:5000/viagens-reserva">
+            <div class="row mb-3">
+                <div class="d-flex justify-content-center mt-5">
+                    <div class="form-check form-check-inline me-5">
+                        <input class="form-check-input custom-radio-input" type="radio" name="tripType" id="inlineRadio1" value="ida" checked>
+                        <label class="form-check-label custom-radio-label" for="inlineRadio1">Ida</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input custom-radio-input" type="radio" name="tripType" id="inlineRadio2" value="ida_e_volta">
+                        <label class="form-check-label custom-radio-label" for="inlineRadio2">Ida e volta</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="origem" class="form-label">De</label>
+                    <select id="origem" class="form-select" name="origem" required>
+                        <option selected>Lisboa</option>
+                        <option>Porto</option>
+                        <option>Coimbra</option>
+                        <option>Madrid</option>
+                        <option>Vilar Formoso</option>
+                        <option>Salamanca</option>
+                        <option>Saragoça</option>
+                        <option>Barcelona</option>
+                        <option>Viseu</option>
+                        <option>Vilar Formoso</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="destino" class="form-label">Para</label>
+                    <select id="destino" class="form-select" name="destino" required>
+                        <option>Lisboa</option>
+                        <option selected>Porto</option>
+                        <option>Coimbra</option>
+                        <option>Madrid</option>
+                        <option>Lisboa</option>
+                        <option>Salamanca</option>
+                        <option>Saragoça</option>
+                        <option>Barcelona</option>
+                        <option>Viseu</option>
+                        <option>Vilar Formoso</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-end">
+                <!-- Departure Date -->
+                <div id="departureDateContainer" class="col-md-6">
+                    <label for="data" class="form-label">Ida</label>
+                    <input type="date" class="form-control" id="data" name="data" required>
+                </div>
+                <!-- Return Date -->
+                <div id="returnDateContainer" class="col-md-3 d-none">
+                    <label for="returnDate" class="form-label">Volta</label>
+                    <input type="date" class="form-control" id="returnDate" name="return_date">
+                </div>
+                <!-- Passengers -->
+                <div class="col-md-6">
+                    <label for="passengers" class="form-label">Passageiros</label>
+                    <input type="number" class="form-control" id="passengers" name="passengers" placeholder="Insira o número de passageiros" required>
+                </div>
+            </div>
+            <button type="submit" class="btn custom-btn w-100">Procurar</button>
+        </form>
+    </div>
+</main>
+
+<script>
+    // vá a buscar os elementos do formulario
+    const tripTypeRadios = document.getElementsByName('tripType');
+    const departureDateContainer = document.getElementById('departureDateContainer');
+    const returnDateContainer = document.getElementById('returnDateContainer');
+
+    // adicionar eventos e botões de seleção
+    tripTypeRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            if (e.target.value === 'ida_e_volta') {
+                // se a pessoa selessiona ida e volta mostra mostra a data de volta
+                returnDateContainer.classList.remove('d-none');
+                returnDateContainer.classList.add('col-md-3');
+                departureDateContainer.classList.remove('col-md-6');
+                departureDateContainer.classList.add('col-md-3');
+            } else {
+                // esconde
+                returnDateContainer.classList.add('d-none');
+                returnDateContainer.classList.remove('col-md-3');
+                departureDateContainer.classList.remove('col-md-3');
+                departureDateContainer.classList.add('col-md-6');
+            }
+        });
+    });
+</script>

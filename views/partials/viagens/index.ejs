@@ -1,0 +1,68 @@
+<!-- listar as veagens-->
+
+<div class="container mt-4">
+  <div class="table-responsive">
+    <h2 class="text-center mb-4">Lista de Viagens</h2>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Origem</th>
+          <th scope="col">Destino</th>
+          <th scope="col">Data da Viagem</th>
+          <th scope="col">Hora de Partida</th>
+          <th scope="col">Hora de Chegada</th>
+          <th scope="col">Capacidade</th>
+          <th scope="col">Preço</th>
+          <th scope="col" class="text-center">Data de registo</th>
+          <th scope="col" class="text-center">Data da última atualização</th>
+          <th scope="col" class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% viagens.forEach((viagem)=> { %>
+          <tr>
+            <td scope="row">
+              <%= viagem.id_viagem %>
+            </td>
+            <td>
+              <%= viagem.origem %>
+            </td>
+            <td>
+              <%= viagem.destino %>
+            </td>
+            <td>
+              <%= viagem.data.toLocaleDateString('pt') %>
+            </td>
+            <td>
+              <%= viagem.hora_partida %>
+            </td>
+            <td>
+              <%= viagem.hora_chegada %>
+            </td>
+            <td>
+              <%= viagem.capacidade %>
+            </td>
+            <td>
+              <%= viagem.preco %>€
+            </td>
+            <td class="col text-center">
+              <%= viagem.dta_registo.toLocaleDateString('pt') %>
+            </td>
+            <td class="col text-center">
+              <%= viagem.dta_atualizacao.toLocaleDateString('pt') %>
+            </td>
+            <td class="text-center">
+              <a class="edit" title="" data-toggle="tooltip" data-original-title="Editar"
+                href="http://localhost:5000/viagens/<%- viagem.id_viagem %>"><i class="fas fa-pencil-alt" style="color: black"></i></a>&nbsp;&nbsp;
+              <a class="delete" title="" data-toggle="tooltip" data-original-title="Apagar"
+                href="http://localhost:5000/viagens/delete/<%- viagem.id_viagem %>"><i class="fas fa-trash-alt"
+                  style="color: black"></i></a>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
