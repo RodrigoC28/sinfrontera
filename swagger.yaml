@@ -9,11 +9,11 @@ paths:
   /Utilizador:
     get:
       tags: 
-        - /utilizador
+        - Utilizador
       summary: Get all utilizador 
       responses:
         '200':
-          description: utilizador 
+          description: List all utilizadores
           content:
             application/json:
               schema:
@@ -23,7 +23,7 @@ paths:
     post:
       tags: 
         - Utilizador
-      summary: utilizador
+      summary: Create new Utilizador
       requestBody:
         required: true
         content:
@@ -37,11 +37,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Utilizador'
-  /Viagem:
-    get:
+    put:
       tags: 
-        - Viagem
-      summary: Viagem
+        - Utilizador
+      summary: Update Utilizador
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+      responses:
+        '200':
+          description: Viagem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilizador'
+
+    delete:
+      tags: 
+        - Utilizador
+      summary: Delete Utilizador
       parameters:
         - name: id
           in: path
@@ -50,15 +73,49 @@ paths:
             type: integer
       responses:
         '200':
-          description: Veagem
+          description: Utilizador deleted successfully
+
+  /Viagem:
+    get:
+      tags: 
+        - Viagem
+      summary: Get all Viagens
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Viagem
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem'
+
+    post:
+      tags: 
+        - Viagem
+      summary: Create new Viagem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Viagem'
+      responses:
+        '200':
+          description: Viagem_paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem'
+
     put:
       tags: 
         - Viagem
-      summary: Viagem
+      summary: Update Viagem
       parameters:
         - name: id
           in: path
@@ -73,7 +130,7 @@ paths:
               $ref: '#/components/schemas/Viagem'
       responses:
         '200':
-          description: Veagem
+          description: Viagem
           content:
             application/json:
               schema:
@@ -83,7 +140,7 @@ paths:
     get:
       tags: 
         - Viagem_paragem
-      summary: Viagem_paragem
+      summary: Get all Viagem_paragem
       responses:
         '200':
           description: Viagem_paragem
@@ -97,7 +154,31 @@ paths:
     post:
       tags: 
         - Viagem_paragem 
-      summary: Viagem_paragem
+      summary: Create new Viagem_paragem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Viagem_paragem'
+      responses:
+        '200':
+          description: Viagem_paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem_paragem'
+
+    put:
+      tags: 
+        - Viagem_paragem
+      summary: Update Viagem_paragem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       requestBody:
         required: true
         content:
@@ -115,49 +196,8 @@ paths:
   /Viagem_utilizador:
     get:
       tags: 
-        - Viagem_paragem
-      summary: Viagem_paragem
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Viagem_paragem
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Viagem_paragem'
-    put:
-      tags: 
-        - Viagem_paragem
-      summary: Viagem_paragem
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Viagem_paragem'
-      responses:
-        '200':
-          description: Viagem_paragem
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Viagem_paragem'
-  / Viagem_utilizador:
-    get:
-      tags: 
-        - viagem_utilizador
-      summary: Viagem_utilizador
+        - Viagem_utilizador
+      summary: Get all Viagem_utilizador
       responses:
         '200':
           description: Viagem_utilizador
@@ -169,8 +209,8 @@ paths:
                   $ref: '#/components/schemas/Viagem_utilizador'
     post:
       tags: 
-        - viagem_utilizador
-      summary: Viagem_utilizador
+        - Viagem_utilizador
+      summary: Create new Viagem_utilizador
       requestBody:
         required: true
         content:
@@ -184,11 +224,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem_utilizador'
+      
+    put:
+      tags: 
+        - Viagem_utilizador
+      summary: Update Viagem_utilizador
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Viagem_utilizador'
+      responses:
+        '200':
+          description: Viagem_paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem_utilizador'
+
   /Autocarro:
     get:
       tags: 
         - Autocarro
-      summary: Autocarro
+      summary: Get all Autocarro
       parameters:
         - name: id
           in: path
@@ -202,10 +267,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Autocarro'
+    post:
+      tags: 
+        - Autocarro
+      summary: Create new Autocarro
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Autocarro'
+      responses:
+        '200':
+          description: Autocarro
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autocarro'
+
     put:
       tags: 
         - Autocarro
-      summary: Autocarro
+      summary: Update Autocarro
       parameters:
         - name: id
           in: path
@@ -228,7 +311,7 @@ paths:
     delete:
       tags: 
         - Autocarro
-      summary: Autocarro
+      summary: Delete Autocarro
       parameters:
         - name: id
           in: path
@@ -243,7 +326,7 @@ paths:
     get:
       tags: 
         - Paragem
-      summary:  paragem 
+      summary:  Get all Paragens 
       responses:
         '200':
           description: Paragem
@@ -256,7 +339,7 @@ paths:
     post:
       tags: 
         - Paragem
-      summary: Paragem
+      summary: Create new Paragem
       requestBody:
         required: true
         content:
@@ -271,28 +354,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Paragem'
                 
-  /medicos/{id}:
-    get:
-      tags: 
-        - Paragem
-      summary: Paragem
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Paragem
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Paragem'
     put:
       tags: 
         - Paragem
-      summary: Paragem
+      summary: Uodate Paragem
       parameters:
         - name: id
           in: path
@@ -315,7 +380,7 @@ paths:
     delete:
       tags: 
         - Paragem
-      summary: Paragem
+      summary: Delete Paragem
       parameters:
         - name: id
           in: path
