@@ -3,6 +3,8 @@ const express = require("express");
 const app = express(); //definir a nossa app em EXPRESS
 const session = require("express-session");
 
+//passamos por aqui...
+
 //definir o motor de templating
 app.set("view engine", "ejs");
 app.set("views", "./views");
