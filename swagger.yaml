@@ -10,7 +10,7 @@ paths:
     get:
       tags: 
         - Utilizador
-      summary: Get all utilizador 
+      summary: Read all utilizador 
       responses:
         '200':
           description: List all utilizadores
@@ -79,7 +79,7 @@ paths:
     get:
       tags: 
         - Viagem
-      summary: Get all Viagens
+      summary: Read all Viagens
       parameters:
         - name: id
           in: path
@@ -140,7 +140,7 @@ paths:
     get:
       tags: 
         - Viagem_paragem
-      summary: Get all Viagem_paragem
+      summary: Read all Viagem_paragem
       responses:
         '200':
           description: Viagem_paragem
@@ -192,43 +192,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem_paragem'
-                
-  /Viagem_utilizador:
-    get:
+    
+    delete:
       tags: 
-        - Viagem_utilizador
-      summary: Get all Viagem_utilizador
+        - Viagem-paragem
+      summary: Delete Viagem-paragem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
         '200':
-          description: Viagem_utilizador
+          description: Viagem-paragem
+                
+  /Venda:
+    get:
+      tags: 
+        - Venda
+      summary: Read all Venda
+      responses:
+        '200':
+          description: Venda
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Viagem_utilizador'
+                  $ref: '#/components/schemas/Venda'
     post:
       tags: 
-        - Viagem_utilizador
-      summary: Create new Viagem_utilizador
+        - Venda
+      summary: Create new Venda
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Viagem_utilizador'
+              $ref: '#/components/schemas/Venda'
       responses:
         '200':
-          description: Viagem_utilizador
+          description: Venda
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Viagem_utilizador'
+                $ref: '#/components/schemas/Venda'
       
     put:
       tags: 
-        - Viagem_utilizador
-      summary: Update Viagem_utilizador
+        - Venda
+      summary: Update Venda
       parameters:
         - name: id
           in: path
@@ -240,20 +254,34 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Viagem_utilizador'
+              $ref: '#/components/schemas/Venda'
       responses:
         '200':
-          description: Viagem_paragem
+          description: Venda
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Viagem_utilizador'
+                $ref: '#/components/schemas/Venda'
+    
+    delete:
+      tags: 
+        - Venda
+      summary: Delete Venda
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Venda
 
   /Autocarro:
     get:
       tags: 
         - Autocarro
-      summary: Get all Autocarro
+      summary: Read all Autocarro
       parameters:
         - name: id
           in: path
@@ -326,7 +354,7 @@ paths:
     get:
       tags: 
         - Paragem
-      summary:  Get all Paragens 
+      summary:  Read all Paragens 
       responses:
         '200':
           description: Paragem
@@ -469,7 +497,7 @@ components:
           type: integer
           format: datetime 
           
-    Viagem_utilizador: 
+    Venda: 
       type: object
       properties: 
         id_veagem: 
