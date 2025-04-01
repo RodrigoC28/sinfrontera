@@ -1,0 +1,61 @@
+<!-- atualiçãr editar-->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">Editar Viagem <%= viagem.origem + ' -> ' + viagem.destino %></h2>
+      <form class="container" method="post" action="http://localhost:5000/viagens/update">
+        <div class="row">
+          <input type="hidden" id="id_viagem" name="id_viagem" value="<%= viagem.id_viagem %>" />
+          <div class="mb-3">
+            <label for="Origem" class="col-sm-2 col-form-label">Origem:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="origem" name="origem" value="<%= viagem.origem %>" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="destino" class="col-sm-2 col-form-label">Destino:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="destino" name="destino" value="<%= viagem.destino %>" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="data" class="col-sm-2 col-form-label">Data:</label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control" id="data" name="data" value="<%= viagem.data.toISOString().slice(0, 10) %>" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="hora_partida" class="col-sm-2 col-form-label">Hora de Partida:</label>
+            <div class="col-sm-10">
+              <input type="time" class="form-control" id="hora_partida" name="hora_partida" value="<%= viagem.hora_partida %>" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="hora_chegada" class="col-sm-2 col-form-label">Hora de Chegada:</label>
+            <div class="col-sm-10">
+              <input type="time" class="form-control" id="hora_chegada" name="hora_chegada" value="<%= viagem.hora_chegada %>" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="capacidade" class="col-sm-2 col-form-label">Capacidade:</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="capacidade" name="capacidade" value="<%= viagem.capacidade %>" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="preco" class="col-sm-2 col-form-label">Preço:</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="preco" name="preco" value="<%= viagem.preco %>" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="col-sm-6">
+              <button type="submit" class="btn custom-btn">Atualizar viagem</button>&nbsp;
+              <button type="reset" class="btn btn-secondary">Limpar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

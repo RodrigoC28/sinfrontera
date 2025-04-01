@@ -1,0 +1,38 @@
+<!-- crear veagens e paragens-->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">Criar Viagem e Paragens</h2>
+      <form class="container" method="post" action="http://localhost:5000/viagens-paragens/create">
+        <div class="row">
+          <div class="mb-3">
+            <label for="id_viagem" class="col-sm-2 col-form-label">Paragem:</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="id_viagem" name="id_viagem" required>
+                  <% viagens_paragens.viagens.forEach((viagem)=> { %>
+                      <option value="<%= viagem.id_viagem %>">(<%= viagem.id_viagem %>) <%= viagem.origem %> -> <%= viagem.destino %></option>
+                  <% }); %>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="col-sm-10">
+              <label for="id_paragem" class="col-sm-2 col-form-label">Paragem:</label>
+              <select class="form-control" id="id_paragem" name="id_paragem" required>
+                  <% viagens_paragens.paragens.forEach((paragem)=> { %>
+                      <option value="<%= paragem.id_paragem %>">(<%= paragem.id_paragem %>) <%= paragem.paragem_nome %></option>
+                  <% }); %>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="col-sm-6">
+              <button type="submit" class="btn custom-btn">Criar Viagem e Paragem</button>&nbsp;
+              <button type="reset" class="btn btn-secondary">Limpar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

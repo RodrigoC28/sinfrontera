@@ -1,0 +1,36 @@
+<!-- reserva veagens-->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">Reservar Viagem</h2>
+            <div class="trip-details mb-4">
+                <h4 class="mt-4">Detalhes da Viagem</h4>
+                <ul class="list-unstyled">
+                    <li><strong>De:</strong> <%= viagem.origem %></li>
+                    <li><strong>Para:</strong> <%= viagem.destino %></li>
+                    <li><strong>Data:</strong> <%= viagem.data.toLocaleDateString('pt') %></li>
+                    <li><strong>Hora de Partida:</strong> <%= viagem.hora_partida %></li>
+                    <li><strong>Hora de Chegada:</strong> <%= viagem.hora_chegada %></li>
+                    <li><strong>Preço:</strong> <%= viagem.preco %>€</li>
+                </ul>
+            </div>
+            <form method="post" action="http://localhost:5000/reservas/create">
+                <input type="hidden" name="id_viagem" value="<%= viagem.id_viagem %>">
+                <input type="hidden" name="id_utilizador" value="<%= user ? user.id_utilizador : '' %>">
+                <div class="mb-3">
+                    <label for="n_passageiros">Número de Passageiros</label>
+                    <input type="number" class="form-control" id="n_passageiros" name="n_passageiros" min="1" max="9" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mtd_pagamento">Método de Pagamento</label>
+                    <select class="form-control" id="mtd_pagamento" name="mtd_pagamento" required>
+                        <option value="Cartão de Crédito">Cartão de Débito/Crédito</option>
+                        <option value="MB WAY">MB WAY</option>
+                        <option value="Paypal">Paypal</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn custom-btn w-100">Confirmar Reserva</button>
+            </form>
+        </div>
+    </div>
+</div>
