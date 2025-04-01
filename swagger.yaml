@@ -1,0 +1,464 @@
+openapi: 3.0.0
+info:
+  title: SinFrontera API
+  description: API em OpenAPi 3.0 para o Projeto Final de Programação III do curso de Multimédia
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+paths:
+  /Utilizador:
+    get:
+      tags: 
+        - /utilizador
+      summary: Get all utilizador 
+      responses:
+        '200':
+          description: utilizador 
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Utilizador'
+    post:
+      tags: 
+        - Utilizador
+      summary: utilizador
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+      responses:
+        '200':
+          description: Utilizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilizador'
+  /Viagem:
+    get:
+      tags: 
+        - Viagem
+      summary: Viagem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Veagem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem'
+    put:
+      tags: 
+        - Viagem
+      summary: Viagem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Viagem'
+      responses:
+        '200':
+          description: Veagem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem'
+    
+  /Viagem_paragem:
+    get:
+      tags: 
+        - Viagem_paragem
+      summary: Viagem_paragem
+      responses:
+        '200':
+          description: Viagem_paragem
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Viagem_paragem'
+                  
+    post:
+      tags: 
+        - Viagem_paragem 
+      summary: Viagem_paragem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Viagem_paragem'
+      responses:
+        '200':
+          description: Viagem_paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem_paragem'
+                
+  /Viagem_utilizador:
+    get:
+      tags: 
+        - Viagem_paragem
+      summary: Viagem_paragem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Viagem_paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem_paragem'
+    put:
+      tags: 
+        - Viagem_paragem
+      summary: Viagem_paragem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Viagem_paragem'
+      responses:
+        '200':
+          description: Viagem_paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem_paragem'
+  / Viagem_utilizador:
+    get:
+      tags: 
+        - viagem_utilizador
+      summary: Viagem_utilizador
+      responses:
+        '200':
+          description: Viagem_utilizador
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Viagem_utilizador'
+    post:
+      tags: 
+        - viagem_utilizador
+      summary: Viagem_utilizador
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Viagem_utilizador'
+      responses:
+        '200':
+          description: Viagem_utilizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem_utilizador'
+  /Autocarro:
+    get:
+      tags: 
+        - Autocarro
+      summary: Autocarro
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Autocarro
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autocarro'
+    put:
+      tags: 
+        - Autocarro
+      summary: Autocarro
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Autocarro'
+      responses:
+        '200':
+          description: Autocarro
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autocarro'
+    delete:
+      tags: 
+        - Autocarro
+      summary: Autocarro
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Autocarro
+          
+  /Paragem:
+    get:
+      tags: 
+        - Paragem
+      summary:  paragem 
+      responses:
+        '200':
+          description: Paragem
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Paragem'
+    post:
+      tags: 
+        - Paragem
+      summary: Paragem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Paragem'
+      responses:
+        '200':
+          description: Paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paragem'
+                
+  /medicos/{id}:
+    get:
+      tags: 
+        - Paragem
+      summary: Paragem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paragem'
+    put:
+      tags: 
+        - Paragem
+      summary: Paragem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Paragem'
+      responses:
+        '200':
+          description: Paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paragem'
+    delete:
+      tags: 
+        - Paragem
+      summary: Paragem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Paragem
+          
+          
+components:
+  schemas:
+    Utilizador:
+      type: object
+      properties:
+        id_utilizador: 
+          type: integer
+        tipo_utilizador:
+          type: integer
+          format: varchar (50)
+        nome:
+          type: integer
+          format: varchar (50)
+        sobrenome:
+          type: integer
+          format: varchar (50)
+        email:
+          type: integer
+          format: varchar (100)
+        password:
+          type: integer
+          format: varchar (255)
+        telemovel:
+          type: integer
+          format: varchar (15)
+        dta_registro:
+          type: string
+          format: timestamp
+        dta_autualizacao:
+          type: string
+          format: timestamp
+    Viagem:
+      type: object
+      properties:
+        ide_veagem:
+          type: integer
+        origem:
+          type: integer
+          format: varchar (100)
+        destino:
+          type: integer
+          format: varchar (100)
+        data: 
+          type: integer
+          format: date
+        hora_partidas: 
+          type: string 
+          format: time 
+        hora_chegada:
+          type: string
+          format: time
+        capasidade: 
+          type: integer
+        preco: 
+          type: string 
+          format: decimal
+        dta_registro:
+          type: integer
+          format: datetime 
+        dta_autualizacao:
+          type: integer
+          format: datetime 
+
+    Viagem_paragem:
+      type: object
+      properties:
+        ide_veagem:
+          type: integer
+        ide_paragem:
+          type: integer
+        dta_registro:
+          type: integer
+          format: datetime 
+        dta_autualizacao:
+          type: integer
+          format: datetime 
+          
+    Viagem_utilizador: 
+      type: object
+      properties: 
+        id_veagem: 
+          type: integer
+        id_utilizador: 
+          type: integer
+        mtd_paragem: 
+          type: integer
+          format: varchar (50)
+        n_passagero: 
+          type: integer
+        dta_registro: 
+          type: integer
+          format: datetime 
+        dta_autualizacao: 
+          type: integer
+          format: datetime 
+  
+    Paragem: 
+      type: object
+      properties: 
+        ide_paragem:
+          type: integer
+        paragem_nome: 
+          type: integer
+          format: varchar (255)
+        hora_paragem:
+          type: string 
+          format: time
+        dta_registro:
+          type: integer
+          format: datetime 
+        dta_autualizacao:
+          type: integer
+          format: datetime 
+          
+    Autocarro: 
+      type: object 
+      properties: 
+        id_autocarro: 
+          type: integer
+        id_veagem: 
+          type: integer
+        matricula: 
+          type: integer
+          format: varchar (50)
+        condutor:
+          type: integer
+          format: varchar (255)
+        dta_registro:
+          type: integer
+          format: datetime 
+        dta_atualizacao:
+          type: integer
+          format: datetime 
+            
+            
