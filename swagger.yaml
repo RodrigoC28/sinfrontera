@@ -31,12 +31,31 @@ paths:
             schema:
               $ref: '#/components/schemas/Utilizador'
       responses:
-        '200':
+        '201':
           description: Utilizador
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Utilizador'
+
+  /Utilizador/{id}:
+    get:
+      tags: 
+        - Utilizador
+      summary: Get Utilizador by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The Utilizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilizador'           
     put:
       tags: 
         - Utilizador
@@ -72,7 +91,7 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        '204':
           description: Utilizador deleted successfully
 
   /Viagem:
@@ -105,12 +124,31 @@ paths:
             schema:
               $ref: '#/components/schemas/Viagem'
       responses:
-        '200':
+        '201':
           description: Viagem_paragem
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem'
+
+  /Viagem/{id}:
+    get:
+      tags: 
+        - Viagem
+      summary: Get Viagem by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The Viagem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Viagem' 
 
     put:
       tags: 
@@ -135,44 +173,76 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem'
+    delete:
+      tags: 
+        - Viagem
+      summary: Delete Viagem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Viagem deleted successfully          
     
-  /Viagem_paragem:
+  /Destinos:
     get:
       tags: 
-        - Viagem_paragem
-      summary: Read all Viagem_paragem
+        - Destinos
+      summary: Read all Destinos
       responses:
         '200':
-          description: Viagem_paragem
+          description: Destinos
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Viagem_paragem'
+                  $ref: '#/components/schemas/Destinos'
                   
     post:
       tags: 
-        - Viagem_paragem 
-      summary: Create new Viagem_paragem
+        - Destinos 
+      summary: Create new Destinos
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Viagem_paragem'
+              $ref: '#/components/schemas/Destinos'
       responses:
-        '200':
-          description: Viagem_paragem
+        '201':
+          description: Destinos
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Viagem_paragem'
+                $ref: '#/components/schemas/Destinos'
+
+  /Destinos/{id}:
+    get:
+      tags: 
+        - Destinos
+      summary: Get Destinos by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The Destinos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Destinos' 
 
     put:
       tags: 
-        - Viagem_paragem
-      summary: Update Viagem_paragem
+        - Destinos
+      summary: Update Destinosm
       parameters:
         - name: id
           in: path
@@ -184,19 +254,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Viagem_paragem'
+              $ref: '#/components/schemas/Destinos'
       responses:
         '200':
-          description: Viagem_paragem
+          description: Destinos
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Viagem_paragem'
+                $ref: '#/components/schemas/Destinos'
     
     delete:
       tags: 
-        - Viagem-paragem
-      summary: Delete Viagem-paragem
+        - Destinos
+      summary: Delete Destinos
       parameters:
         - name: id
           in: path
@@ -204,8 +274,8 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
-          description: Viagem-paragem
+        '204':
+          description: Destinos
                 
   /Venda:
     get:
@@ -232,12 +302,31 @@ paths:
             schema:
               $ref: '#/components/schemas/Venda'
       responses:
-        '200':
+        '201':
           description: Venda
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Venda'
+
+  /Venda/{id}:
+    get:
+      tags: 
+        - Venda
+      summary: Get Venda by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The Venda
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venda' 
       
     put:
       tags: 
@@ -274,7 +363,7 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        '204':
           description: Venda
 
   /Autocarro:
@@ -306,12 +395,31 @@ paths:
             schema:
               $ref: '#/components/schemas/Autocarro'
       responses:
-        '200':
+        '201':
           description: Autocarro
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Autocarro'
+
+  /Autocarro/{id}:
+    get:
+      tags: 
+        - Autocarro
+      summary: Get Autocarro by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The Autocarro
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autocarro' 
 
     put:
       tags: 
@@ -347,14 +455,14 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        '204':
           description: Autocarro
-          
+
   /Paragem:
     get:
       tags: 
         - Paragem
-      summary:  Read all Paragens 
+      summary: Read all Paragem
       responses:
         '200':
           description: Paragem
@@ -367,7 +475,7 @@ paths:
     post:
       tags: 
         - Paragem
-      summary: Create new Paragem
+      summary: Create new Venda
       requestBody:
         required: true
         content:
@@ -375,17 +483,36 @@ paths:
             schema:
               $ref: '#/components/schemas/Paragem'
       responses:
-        '200':
-          description: Paragem
+        '201':
+          description: Venda
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Paragem'
-                
+                $ref: '#/components/schemas/Venda'
+
+  /Paragem/{id}:
+    get:
+      tags: 
+        - Paragem
+      summary: Get Paragem by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The Paragem
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paragem' 
+      
     put:
       tags: 
         - Paragem
-      summary: Uodate Paragem
+      summary: Update Paragem
       parameters:
         - name: id
           in: path
@@ -405,6 +532,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Paragem'
+    
     delete:
       tags: 
         - Paragem
@@ -416,8 +544,96 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        '204':
           description: Paragem
+          
+  /Condutor:
+    get:
+      tags: 
+        - Condutor
+      summary:  Read all Condutor
+      responses:
+        '200':
+          description: Condutor
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condutor'
+    post:
+      tags: 
+        - Condutor
+      summary: Create new Condutor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Condutor'
+      responses:
+        '201':
+          description: Condutor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condutor'
+
+  /Condutor/{id}:
+    get:
+      tags: 
+        - Condutor
+      summary: Get Condutor by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The Condutor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condutor' 
+                
+    put:
+      tags: 
+        - Condutor
+      summary: Uodate Condutor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Condutor'
+      responses:
+        '200':
+          description: Condutor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condutor'
+    delete:
+      tags: 
+        - Condutor
+      summary: Delete Condutor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Condutor
           
           
 components:
@@ -445,113 +661,126 @@ components:
         telemovel:
           type: integer
           format: varchar (15)
-        dta_registro:
+        dta_registo:
           type: string
           format: timestamp
-        dta_autualizacao:
+        dta_atualizacao:
           type: string
           format: timestamp
     Viagem:
       type: object
       properties:
-        ide_veagem:
+        id_viagem:
           type: integer
-        origem:
+        id_autocarros:
           type: integer
-          format: varchar (100)
-        destino:
-          type: integer
-          format: varchar (100)
         data: 
           type: integer
           format: date
-        hora_partidas: 
+        hora_partida: 
           type: string 
           format: time 
         hora_chegada:
           type: string
           format: time
-        capasidade: 
-          type: integer
         preco: 
           type: string 
           format: decimal
-        dta_registro:
+        dta_registo:
           type: integer
           format: datetime 
-        dta_autualizacao:
+        dta_atualizacao:
           type: integer
           format: datetime 
 
-    Viagem_paragem:
+    Destinos:
       type: object
       properties:
-        ide_veagem:
+        id_viagem:
           type: integer
-        ide_paragem:
+        id_paragem:
           type: integer
-        dta_registro:
+        dta_registo:
           type: integer
           format: datetime 
-        dta_autualizacao:
+        dta_atualizacao:
           type: integer
           format: datetime 
           
     Venda: 
       type: object
       properties: 
-        id_veagem: 
+        id_viagem: 
           type: integer
         id_utilizador: 
           type: integer
-        mtd_paragem: 
+        mtd_pagamento: 
           type: integer
           format: varchar (50)
-        n_passagero: 
+        n_passageiro: 
           type: integer
-        dta_registro: 
+        dta_registo: 
           type: integer
           format: datetime 
-        dta_autualizacao: 
+        dta_atualizacao: 
           type: integer
           format: datetime 
   
     Paragem: 
       type: object
       properties: 
-        ide_paragem:
+        id_paragem:
           type: integer
-        paragem_nome: 
+        nome: 
           type: integer
           format: varchar (255)
-        hora_paragem:
+        coordenadas:
           type: string 
-          format: time
-        dta_registro:
+          format: varchar (255)
+        dta_registo:
           type: integer
-          format: datetime 
-        dta_autualizacao:
+          format: timestamp 
+        dta_atualizacao:
           type: integer
-          format: datetime 
-          
+          format: timestamp
+    
     Autocarro: 
       type: object 
       properties: 
         id_autocarro: 
           type: integer
-        id_veagem: 
-          type: integer
         matricula: 
           type: integer
-          format: varchar (50)
-        condutor:
+          format: varchar (20)
+        capacidade:
           type: integer
-          format: varchar (255)
-        dta_registro:
+        dta_registo:
           type: integer
           format: datetime 
         dta_atualizacao:
           type: integer
           format: datetime 
+
+    Condutor: 
+      type: object
+      properties: 
+        id_condutor:
+          type: integer
+        id_viagem: 
+          type: integer
+        nome:
+          type: string 
+          format: varchar (255)
+        genero:
+          type: string 
+          format: varchar (10)
+        idade:
+          type: integer  
+        dta_registo:
+          type: integer
+          format: timestamp 
+        dta_atualizacao:
+          type: integer
+          format: timestamp 
             
             

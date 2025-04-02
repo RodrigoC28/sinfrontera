@@ -3,12 +3,6 @@ const express = require("express");
 const app = express(); //definir a nossa app em EXPRESS
 const session = require("express-session");
 
-//passamos por aqui...
-
-//definir o motor de templating
-app.set("view engine", "ejs");
-app.set("views", "./views");
-
 //definir a pasta assets como estática (um género de diretoria pública)
 app.use(express.static("./assets"));
 
