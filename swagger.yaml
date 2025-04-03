@@ -601,7 +601,7 @@ paths:
     put:
       tags: 
         - Condutor
-      summary: Uodate Condutor
+      summary: Update Condutor
       parameters:
         - name: id
           in: path
@@ -644,29 +644,30 @@ components:
         id_utilizador: 
           type: integer
         tipo_utilizador:
-          type: integer
+          type: string
           format: varchar (50)
         nome:
-          type: integer
+          type: string
           format: varchar (50)
         sobrenome:
-          type: integer
+          type: string
           format: varchar (50)
         email:
-          type: integer
+          type: string
           format: varchar (100)
         password:
-          type: integer
+          type: string
           format: varchar (255)
         telemovel:
-          type: integer
+          type: string
           format: varchar (15)
         dta_registo:
           type: string
-          format: timestamp
+          format: date-time 
         dta_atualizacao:
           type: string
-          format: timestamp
+          format: date-time 
+          
     Viagem:
       type: object
       properties:
@@ -675,7 +676,7 @@ components:
         id_autocarros:
           type: integer
         data: 
-          type: integer
+          type: string
           format: date
         hora_partida: 
           type: string 
@@ -687,11 +688,11 @@ components:
           type: string 
           format: decimal
         dta_registo:
-          type: integer
-          format: datetime 
+          type: string
+          format: date-time 
         dta_atualizacao:
-          type: integer
-          format: datetime 
+          type: string
+          format: date-time 
 
     Destinos:
       type: object
@@ -700,12 +701,15 @@ components:
           type: integer
         id_paragem:
           type: integer
+        hora: 
+          type: string
+          format: time
         dta_registo:
-          type: integer
-          format: datetime 
+          type: string
+          format: date-time  
         dta_atualizacao:
-          type: integer
-          format: datetime 
+          type: string
+          format: date-time  
           
     Venda: 
       type: object
@@ -715,16 +719,16 @@ components:
         id_utilizador: 
           type: integer
         mtd_pagamento: 
-          type: integer
+          type: string
           format: varchar (50)
-        n_passageiro: 
+        n_passageiros: 
           type: integer
         dta_registo: 
-          type: integer
-          format: datetime 
+          type: string
+          format: date-time  
         dta_atualizacao: 
-          type: integer
-          format: datetime 
+          type: string
+          format: date-time  
   
     Paragem: 
       type: object
@@ -732,17 +736,17 @@ components:
         id_paragem:
           type: integer
         nome: 
-          type: integer
+          type: string
           format: varchar (255)
         coordenadas:
           type: string 
           format: varchar (255)
         dta_registo:
-          type: integer
-          format: timestamp 
+          type: string
+          format: date-time  
         dta_atualizacao:
-          type: integer
-          format: timestamp
+          type: string
+          format: date-time 
     
     Autocarro: 
       type: object 
@@ -750,16 +754,16 @@ components:
         id_autocarro: 
           type: integer
         matricula: 
-          type: integer
-          format: varchar (20)
+          type: string
+          format: varchar (255)
         capacidade:
           type: integer
         dta_registo:
-          type: integer
-          format: datetime 
+          type: string
+          format: date-time  
         dta_atualizacao:
-          type: integer
-          format: datetime 
+          type: string
+          format: date-time  
 
     Condutor: 
       type: object
@@ -777,10 +781,10 @@ components:
         idade:
           type: integer  
         dta_registo:
-          type: integer
-          format: timestamp 
+          type: string
+          format: date-time  
         dta_atualizacao:
-          type: integer
-          format: timestamp 
+          type: string
+          format: date-time 
             
             
