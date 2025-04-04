@@ -1,7 +1,7 @@
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
 
-let Destino= conexao.define(
+let Destinos= conexao.define(
     "viagem_paragem",
     {
         id_viagem: {
@@ -35,4 +35,4 @@ let Destino= conexao.define(
     }
 );
 
-module.exports = Destino;
+module.exports = Destinos;
