@@ -18,7 +18,7 @@ let Venda = conexao.define(
             type: sequelize.STRING,
             allowNull: false
         },
-        n_pasaageiros: {
+        n_passageiros: {
             type: sequelize.INTEGER,
             allowNull: false
         },
