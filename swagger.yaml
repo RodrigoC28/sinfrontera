@@ -20,6 +20,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Utilizador'
+        '400':
+          description: Invalid input
+        '500':
+          description: Validation exception
     post:
       tags: 
         - Utilizador
@@ -37,6 +41,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Utilizador'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.  
 
   /Utilizador/{id}:
     get:
@@ -55,7 +65,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Utilizador'           
+                $ref: '#/components/schemas/Utilizador' 
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.                   
     put:
       tags: 
         - Utilizador
@@ -79,7 +95,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Utilizador'
-
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.  
     delete:
       tags: 
         - Utilizador
@@ -93,6 +114,12 @@ paths:
       responses:
         '204':
           description: Utilizador deleted successfully
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.   
 
   /Viagem:
     get:
@@ -112,6 +139,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem'
+        '400':
+          description: Invalid input
+        '500':
+          description: Validation exception        
 
     post:
       tags: 
@@ -130,6 +161,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.  
 
   /Viagem/{id}:
     get:
@@ -149,7 +186,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem' 
-
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.  
     put:
       tags: 
         - Viagem
@@ -173,6 +215,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Viagem'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.         
     delete:
       tags: 
         - Viagem
@@ -185,8 +233,13 @@ paths:
             type: integer
       responses:
         '204':
-          description: Viagem deleted successfully          
-    
+          description: Viagem deleted successfully  
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception          
+        '500':
+          description: não pôde atender à solicitação.
   /Destinos:
     get:
       tags: 
@@ -201,6 +254,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Destinos'
+        '400':
+          description: Invalid input
+        '500':
+          description: Validation exception          
                   
     post:
       tags: 
@@ -219,7 +276,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Destinos'
-
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.
   /Destinos/{id}:
     get:
       tags: 
@@ -238,7 +300,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Destinos' 
-
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.
     put:
       tags: 
         - Destinos
@@ -262,6 +329,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Destinos'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.         
     
     delete:
       tags: 
@@ -276,6 +349,12 @@ paths:
       responses:
         '204':
           description: Destinos
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.  
                 
   /Venda:
     get:
@@ -291,6 +370,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Venda'
+        '400':
+          description: Invalid input
+        '500':
+          description: Validation exception          
     post:
       tags: 
         - Venda
@@ -308,6 +391,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Venda'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.          
 
   /Venda/{id}:
     get:
@@ -327,7 +416,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Venda' 
-      
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.  
     put:
       tags: 
         - Venda
@@ -351,7 +445,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Venda'
-    
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.
+
     delete:
       tags: 
         - Venda
@@ -365,6 +465,12 @@ paths:
       responses:
         '204':
           description: Venda
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.   
 
   /Autocarro:
     get:
@@ -384,6 +490,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Autocarro'
+        '400':
+          description: Invalid input
+        '500':
+          description: Validation exception        
     post:
       tags: 
         - Autocarro
@@ -401,6 +511,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Autocarro'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.         
 
   /Autocarro/{id}:
     get:
@@ -420,6 +536,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Autocarro' 
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.       
 
     put:
       tags: 
@@ -444,6 +566,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Autocarro'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.         
     delete:
       tags: 
         - Autocarro
@@ -457,6 +585,12 @@ paths:
       responses:
         '204':
           description: Autocarro
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.  
 
   /Paragem:
     get:
@@ -472,6 +606,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Paragem'
+        '400':
+          description: Invalid input
+        '500':
+          description: Validation exception          
     post:
       tags: 
         - Paragem
@@ -489,6 +627,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Venda'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception  
+        '500':
+          description: não pôde atender à solicitação.        
 
   /Paragem/{id}:
     get:
@@ -508,6 +652,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Paragem' 
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.         
       
     put:
       tags: 
@@ -532,6 +682,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Paragem'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.          
     
     delete:
       tags: 
@@ -546,6 +702,12 @@ paths:
       responses:
         '204':
           description: Paragem
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception  
+        '500':
+          description: não pôde atender à solicitação.  
           
   /Condutor:
     get:
@@ -561,6 +723,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Condutor'
+        '400':
+          description: Invalid input
+        '500':
+          description: Validation exception          
     post:
       tags: 
         - Condutor
@@ -578,7 +744,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Condutor'
-
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception
+        '500':
+          description: não pôde atender à solicitação.
   /Condutor/{id}:
     get:
       tags: 
@@ -597,6 +768,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Condutor' 
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception  
+        '500':
+          description: não pôde atender à solicitação.       
                 
     put:
       tags: 
@@ -621,6 +798,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Condutor'
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception  
+        '500':
+          description: não pôde atender à solicitação.        
     delete:
       tags: 
         - Condutor
@@ -634,6 +817,12 @@ paths:
       responses:
         '204':
           description: Condutor
+        '400':
+          description: Invalid input
+        '404':
+          description: Validation exception 
+        '500':
+          description: não pôde atender à solicitação.
           
           
 components:
