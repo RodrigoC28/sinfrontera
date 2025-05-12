@@ -1,0 +1,57 @@
+.navbar-brand img {
+    width: 100px;
+  }
+  .navbar-nav {
+    align-items: center;
+  }
+  .navbar .navbar-nav .nav-link {
+    font-size: 1.1em;
+    padding: 0.5em 1em;
+  }
+
+  @media screen and (min-width: 768px) {
+    .navbar-brand img {
+      width: 100px;
+    }
+    .navbar-brand {
+      margin-right: 0;
+      padding: 0 1em;
+    }
+  }
+
+.custom-radio-input {
+    top: 0.8rem;
+    scale: 2.5;
+    margin-right: 0.5rem;
+}
+
+.custom-radio-input:checked {
+    background-color: #D87C58;
+    border-color: #BC5931;
+}
+
+.custom-radio-input:focus {
+    border-color: #d87c5840;
+    box-shadow: 0 0 0 .25rem rgba(216, 124, 88, .25);
+}
+
+.custom-radio-label {
+    padding-left: 15px;
+}
+
+.custom-btn {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #D87C58;
+    --bs-btn-border-color: #D87C58;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #BC5931;
+    --bs-btn-hover-border-color: #923915;
+    --bs-btn-focus-shadow-rgb: 60, 153, 110;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #923915;
+    --bs-btn-active-border-color: #923915;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #D87C58;
+    --bs-btn-disabled-border-color: #D87C58;
+}
