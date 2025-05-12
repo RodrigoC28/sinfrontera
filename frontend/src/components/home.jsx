@@ -12,7 +12,7 @@ const Home = () => {
     };
     return (
     <>
-      <img src="/images/banner.jpeg" className="img-fluid w-100" alt="..." />
+      <img src="/images/banner.jpg" className="img-fluid w-100" alt="..." />
       <main className="container pb-4">
         <div className="container my-5">
           <h2 className="text-center">Planear Viagem</h2>
