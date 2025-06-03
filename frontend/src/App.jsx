@@ -20,6 +20,10 @@ import ListarParagens from './components/paragens/list';
 import CriarParagens from './components/paragens/create';
 import EditarParagens from './components/paragens/edit';
 
+// Viagens - Paragens
+import ListarDestinos from './components/destinos/list';
+import CriarDestino from './components/destinos/create';
+
 // Condutores
 import ListarCondutores from './components/condutores/list';
 import CriarCondutores from './components/condutores/create';
@@ -45,23 +49,26 @@ function App() {
           <Route path="/login" Component={Login} />
           <Route path="/registar" Component={Registar} />
           <Route path="/utilizadores" Component={ListarUtilizadores} />
-          <Route path="/utilizadores/editar" Component={EditarUtilizador} />
+          <Route path="/utilizadores/editar/:id" Component={EditarUtilizador} />
 
           <Route path="/viagens" Component={ListarViagens} />
           <Route path="/viagens/criar" Component={CriarViagem} />
-          <Route path="/viagens/editar" Component={EditarViagem} />
+          <Route path="/viagens/editar/:id" Component={EditarViagem} />
 
           <Route path="/paragens" Component={ListarParagens} />
           <Route path="/paragens/criar" Component={CriarParagens} />
-          <Route path="/paragens/editar" Component={EditarParagens} />
+          <Route path="/paragens/editar/:id" Component={EditarParagens} />
+
+          <Route path="/destinos" Component={ListarDestinos} />
+          <Route path="/destinos/criar" Component={CriarDestino} />
 
           <Route path="/condutores" Component={ListarCondutores} />
           <Route path="/condutores/criar" Component={CriarCondutores} />
-          <Route path="/condutores/editar" Component={EditarCondutores} />
+          <Route path="/condutores/editar/:id" Component={EditarCondutores} />
 
           <Route path="/autocarros" Component={ListarAutocarros} />
           <Route path="/autocarros/criar" Component={CriarAutocarros} />
-          <Route path="/autocarros/editar" Component={EditarAutocarros} />
+          <Route path="/autocarros/editar/:id" Component={EditarAutocarros} />
 
           <Route path="/reservas" Component={ListarReservas} />
           <Route path="/reservas/disponiveis" Component={ListarViagensDisponiveis} />

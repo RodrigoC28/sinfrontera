@@ -7,7 +7,7 @@ let Paragem = conexao.define(
         id_paragem: {
             type: sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: false,
+            autoIncrement: true
         },
         nome: {
             type: sequelize.STRING,
@@ -17,19 +17,12 @@ let Paragem = conexao.define(
             type: sequelize.STRING,
             allowNull: false
         },
-
-        dta_registo: {
-            type: sequelize.STRING,
-            allowNull: true
-        },
-        dta_atualizacao: {
-            type: sequelize.STRING,
-            allowNull: true
-        },
     },
     {
         tableName: "paragem",
-        timestamps: true
+        timestamps: true,
+        createdAt: "dta_registo",
+        updatedAt: "dta_atualizacao",
     }
 );
 

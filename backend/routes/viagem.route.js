@@ -1,18 +1,22 @@
 const express = require("express");
 const router = express.Router();
-
-//importação middleware
 const middleware = require("../middleware");
-
-//importação controller
 const viagemController = require("../controllers/viagem.controller");
 
-//rotas(endpoints) da entidade 'viagem'
-router.post("/Viagem", middleware.checkToken, viagemController.createViagem);
-router.get("/Viagem", middleware.checkToken, viagemController.getAllViagem);
-router.put("/Viagem/:id", middleware.checkToken, viagemController.updateViagem);
-router.delete("/Viagem/:id", middleware.checkToken, viagemController.deleteViagem);
-router.get("/Viagem/:id", middleware.checkToken, viagemController.getViagemById);
+// Rotas para Viagem
+router.post("/viagem", middleware.checkToken, viagemController.createViagem);
+router.get("/viagens", middleware.checkToken, viagemController.getAllViagens);
+router.get("/viagem/:id", middleware.checkToken, viagemController.getViagemById);
+router.put("/viagem/:id", middleware.checkToken, viagemController.updateViagem);
+router.delete("/viagem/:id", middleware.checkToken, viagemController.deleteViagem);
+
+
+// Viagem - Utilizadores (Reservas)
+router.post(
+    "/viagens/:id_viagem/utilizadores/:id_utilizador/reserva", // More descriptive path
+    middleware.checkToken,
+    viagemController.addUtilizadorToViagem
+);
 
 
 module.exports = router;

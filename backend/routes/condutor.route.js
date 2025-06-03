@@ -7,12 +7,12 @@ const middleware = require("../middleware");
 //importação controller
 const condutorController = require("../controllers/condutor.controller");
 
-//rotas(endpoints) da entidade 'condutor'
-router.post("/Condutor", middleware.checkToken, condutorController.createCondutor);
-router.get("/Condutor", middleware.checkToken, condutorController.getAllCondutor);
-router.put("/Condutor/:id", middleware.checkToken, condutorController.updateCondutor);
-router.delete("/Condutor/:id", middleware.checkToken, condutorController.deleteCondutor);
-router.get("/Condutor/:id", middleware.checkToken, condutorController.getCondutorById);
+// Rotas para Condutor
+router.post("/condutor", middleware.checkToken, condutorController.createCondutor);
+router.get("/condutores", middleware.checkToken, condutorController.getAllCondutores);
+router.get("/condutor/:id", middleware.checkToken, condutorController.getCondutorById);
+router.put("/condutor/:id", middleware.checkToken, condutorController.updateCondutor);
+router.delete("/condutor/:id", middleware.checkToken, condutorController.deleteCondutor);
 
 
 module.exports = router;

@@ -8,11 +8,11 @@ const middleware = require("../middleware");
 const vendaController = require("../controllers/venda.controller");
 
 //rotas(endpoints) da entidade 'venda'
-router.post("/Venda", middleware.checkToken, vendaController.createVenda);
-router.get("/Venda", middleware.checkToken, vendaController.getAllVenda);
-router.put("/Venda/:id", middleware.checkToken, vendaController.updateVenda);
-router.delete("/Venda/:id", middleware.checkToken, vendaController.deleteVenda);
-router.get("/Venda/:id", middleware.checkToken, vendaController.getVendaById);
+router.post("/venda", middleware.checkToken, vendaController.createVenda);
+router.get("/vendas", middleware.checkToken, vendaController.getAllVenda);
+router.put("/venda/:id", middleware.checkToken, vendaController.updateVenda);
+router.delete("/venda/:id", middleware.checkToken, vendaController.deleteVenda);
+router.get("/venda/:id", middleware.checkToken, vendaController.getVendaById);
 
 
 module.exports = router;

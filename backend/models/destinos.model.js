@@ -7,31 +7,31 @@ let Destinos= conexao.define(
         id_viagem: {
             type: sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: false,
+            allowNull: false,
+            references: {
+                model: 'viagem',
+                key: 'id_viagem',
+            },
         },
         id_paragem: {
             type: sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: false,
-        },
-
-        hora: {
-            type: sequelize.STRING,
             allowNull: false,
+            references: {
+                model: 'paragem',
+                key: 'id_paragem',
+            },
         },
-
-        dta_registo: {
-            type: sequelize.STRING,
-            allowNull: true,
-        },
-        dta_atualizacao: {
-            type: sequelize.STRING,
-            allowNull: true,
+        hora: {
+            type: sequelize.TIME,
+            allowNull: false,
         },
     },
     {
         tableName: "viagem_paragem",
         timestamps: true,
+        createdAt: "dta_registo",
+        updatedAt: "dta_atualizacao",
     }
 );
 

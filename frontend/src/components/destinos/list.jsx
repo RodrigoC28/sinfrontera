@@ -3,15 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
 
-const ListarViagens = () => {
-    const [viagens, setViagens] = useState([]);
+const ListarDestinos = () => {
+    const [destinos, setDestinos] = useState([]);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
     const { token } = useContext(AuthContext);
 
     // Estados para o modal de delete
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [viagemIdToDelete, setViagemIdToDelete] = useState(null);
+    const [itemToDelete, setItemToDelete] = useState(null);
 
     const formatarDataHora = (dataISO) => {
         const data = new Date(dataISO);
@@ -23,20 +23,12 @@ const ListarViagens = () => {
         return `${dia}/${mes}/${ano} ${horas}:${minutos}`;
     };
 
-    const formatarData = (dataISO) => {
-        const data = new Date(dataISO);
-        const dia = String(data.getDate()).padStart(2, '0');
-        const mes = String(data.getMonth() + 1).padStart(2, '0');
-        const ano = data.getFullYear();
-        return `${dia}/${mes}/${ano}`;
-    };
-
     const formatarHora = (horaString) => {
         return horaString.substring(0, 5); 
     };
 
-    const handleAbrirModalDelete = (id) => {
-        setViagemIdToDelete(id);
+    const handleAbrirModalDelete = (idViagem, idParagem) => {
+        setItemToDelete({ id_viagem: idViagem, id_paragem: idParagem });
         setShowDeleteModal(true);
         setError('');
         setSuccess(false);
@@ -44,11 +36,11 @@ const ListarViagens = () => {
 
     const handleFecharModalDelete = () => {
         setShowDeleteModal(false);
-        setViagemIdToDelete(null);
+        setItemToDelete(null);
     };
 
-    const deleteViagem = (id) => {
-        axios.delete(`http://localhost:5000/api/v1/viagem/${id}`, {
+    const deleteDestino = (id) => {
+        axios.delete(`http://localhost:5000/api/v1/destino/${itemToDelete.id_viagem}/${itemToDelete.id_paragem}`, {
             headers: {
                 Authorization: token ? `Bearer ${token}` : undefined,
             },
@@ -56,11 +48,11 @@ const ListarViagens = () => {
             .then((res) => {
                 if (res.status === 204) {
                     setSuccess(true);
-                    setViagens((prevViagens) => 
-                        prevViagens.filter((viagem) => viagem.id_viagem !== viagemIdToDelete)
-                    );
+                    setDestinos((prevDestinos) => 
+                        prevDestinos.filter((destino) => (destino.id_viagem !== itemToDelete.id_viagem && destino.id_paragem !== itemToDelete.id_paragem)
+                ));
                 } else {
-                    setError("Ocorreu um erro ao eliminar o viagem.");
+                    setError("Ocorreu um erro ao eliminar o condutor.");
                 }
                 handleFecharModalDelete();
             })
@@ -71,7 +63,7 @@ const ListarViagens = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/v1/viagens", {
+            .get("http://localhost:5000/api/v1/destinos", {
                 headers: {
                     Authorization: token ? `Bearer ${token}` : undefined,
                 },
@@ -79,7 +71,7 @@ const ListarViagens = () => {
             .then((res) => {
                 console.log(res.data);
                 if (res.data.status) {
-                    setViagens(res.data.data);
+                    setDestinos(res.data.data);
                 } else {
                     setError("Ocorreu um erro na execução do pedido.");
                 }
@@ -93,79 +85,53 @@ const ListarViagens = () => {
     <div className="container mt-4">
         <div className="d-flex justify-content-between align-items-center mb-4">
                     <h2 className="mb-0">Lista de Viagens</h2>
-                        <Link to="/viagens/criar" className="btn custom-btn">
-                            <i className="fas fa-plus me-2"></i>Criar Nova Viagem
+                        <Link to="/destinos/criar" className="btn custom-btn">
+                            <i className="fas fa-plus me-2"></i>Criar Novo Destino
                         </Link>
                 </div>
         
                 {success && ( 
                   <div className="alert alert-success alert-dismissible fade show" role="alert">
-                    Viagem eliminada com sucesso!
+                    Destino eliminado com sucesso!
                     <button type="button" className="btn-close" onClick={() => setSuccess(false)} aria-label="Close"></button>
                   </div>
                 )}
         
                 {error && showDeleteModal && ( 
                      <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                        Erro ao tentar apagar viagem: {error}
+                        Erro ao tentar apagar destino: {error}
                         <button type="button" className="btn-close" onClick={() => setError('')} aria-label="Close"></button>
                     </div>
                 )}
         
-                {viagens.length === 0 ? (
+                {destinos.length === 0 ? (
                     <div className="alert alert-info" role="alert">
-                        Não existem viagens para mostrar.
+                        Não existem destinos para mostrar.
                     </div>
                 ) : (
         <div className="table-responsive">
         <table className="table table-bordered table-hover">
         <thead className="thead-light">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Autocarro</th>
-            <th scope="col">Paragens</th>
-            <th scope="col">Data da Viagem</th>
-            <th scope="col">Hora de Partida</th>
-            <th scope="col">Hora de Chegada</th>
-            <th scope="col">Preço</th>
+            <th scope="col">ID da Viagem</th>
+            <th scope="col">ID da Paragem</th>
+            <th scope="col">Hora</th>
             <th scope="col" className="text-center">Data de registo</th>
             <th scope="col" className="text-center">Data da última atualização</th>
             <th scope="col" className="text-center">Ações</th>
         </tr>
       </thead>
       <tbody>
-                {viagens.map((viagem) => (
-                  <tr key={viagem.id_viagem}>
-                    <td scope="row">{viagem.id_viagem}</td>
-                    <td>{viagem.autocarro.matricula}</td>
-                    <td>
-                      {viagem.paragens && viagem.paragens.length > 0 ? (
-                        <ul className="list-unstyled mb-0 small">
-                          {viagem.paragens.map(paragem => (
-                            <li key={paragem.id_paragem}>
-                                {paragem.nome}
-                                {paragem.viagem_paragem && paragem.viagem_paragem.hora ? ` (${formatarHora(paragem.viagem_paragem.hora)})` : ''}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : 'Nenhuma'}
-                    </td>
-                    <td>{formatarData(viagem.data)}</td>
-                    <td>{formatarHora(viagem.hora_partida)}</td>
-                    <td>{formatarHora(viagem.hora_chegada)}</td>
-                    <td>{viagem.preco}€</td>
-                    <td className="text-center">{formatarDataHora(viagem.dta_registo)}</td>
-                    <td className="text-center">{formatarDataHora(viagem.dta_atualizacao)}</td>
+                {destinos.map((destino) => (
+                  <tr key={destino.id_viagem}>
+                    <td scope="row">{destino.id_viagem}</td>
+                    <td>{destino.id_paragem}</td>
+                    <td>{formatarHora(destino.hora)}</td>
+                    <td className="text-center">{formatarDataHora(destino.dta_registo)}</td>
+                    <td className="text-center">{formatarDataHora(destino.dta_atualizacao)}</td>
                     <td className="text-center">
-                      <Link
-                        to={`/viagens/editar/${viagem.id_viagem}`}
-                        className="btn btn-sm btn-outline-primary me-1"
-                        title="Editar"
-                      >
-                        <i className="fas fa-pencil-alt"></i>
-                      </Link>
                       <button
-                        onClick={() => handleAbrirModalDelete(viagem.id_viagem)}
+                        onClick={() => handleAbrirModalDelete(destino.id_viagem, destino.id_paragem)}
                         className="btn btn-sm btn-outline-danger"
                         title="Apagar"
                       >
@@ -190,11 +156,11 @@ const ListarViagens = () => {
                   <button type="button" className="btn-close" onClick={handleFecharModalDelete} aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                  <p>Tem a certeza que pretende apagar a viagem com ID: {viagemIdToDelete}? <br/>Esta ação não pode ser desfeita.</p>
+                  <p>Tem a certeza que pretende apagar a paragem da viagem? <br/> (Viagem ID: {itemToDelete?.id_viagem}, Paragem ID: {itemToDelete?.id_paragem}) <br/>Esta ação não pode ser desfeita.</p>
               </div>
               <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" onClick={handleFecharModalDelete}>Cancelar</button>
-                  <button type="button" className="btn btn-danger" onClick={() => deleteViagem(viagemIdToDelete)}>Apagar</button>
+                  <button type="button" className="btn btn-danger" onClick={() => deleteDestino(itemToDelete)}>Apagar</button>
               </div>
               </div>
           </div>
@@ -203,4 +169,4 @@ const ListarViagens = () => {
   );
 };
 
-export default ListarViagens;
+export default ListarDestinos;

@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Navbar = () => {
+    const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
+
     return (
     <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -23,7 +33,7 @@ const Navbar = () => {
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a href="/utilizadores/editar" className="dropdown-item">Editar Conta</a>
-                            <a href="/" className="dropdown-item">Logout</a>
+                            <button onClick={handleLogout} className="dropdown-item" type="button">Logout</button>
                         </div>
                     </li>
                     <li className="nav-item dropdown">
@@ -52,12 +62,16 @@ const Navbar = () => {
                             <a href="/utilizadores" className="dropdown-item">Listar</a>
                             <div className="dropdown-divider"></div>
                             <h6 className="dropdown-header">Viagens</h6>
-                            <a href="/viagens" className="dropdown-item"></a>
+                            <a href="/viagens" className="dropdown-item">Listar</a>
                             <a href="/viagens/criar" className="dropdown-item">Criar nova</a>
                             <div className="dropdown-divider"></div>
                             <h6 className="dropdown-header">Paragens</h6>
                             <a href="/paragens" className="dropdown-item">Listar</a>
                             <a href="/paragens/criar" className="dropdown-item">Criar nova</a>
+                            <div className="dropdown-divider"></div>
+                            <h6 className="dropdown-header">Destinos</h6>
+                            <a href="/destinos" className="dropdown-item">Listar</a>
+                            <a href="/destinos/criar" className="dropdown-item">Criar novo</a>
                             <div className="dropdown-divider"></div>
                             <h6 className="dropdown-header">Autocarros</h6>
                             <a href="/autocarros" className="dropdown-item">Listar</a>

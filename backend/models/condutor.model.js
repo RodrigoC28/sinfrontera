@@ -1,43 +1,54 @@
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
+const Viagem = require("./viagem.model");
 
-let Condutar = conexao.define(
+let Condutor = conexao.define(
     "condutor",
     {
         id_condutor: {
             type: sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: false,
+            autoIncrement: true,
+            allowNull: false,
         },
         id_viagem: {
             type: sequelize.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: Viagem,
+                key: "id_viagem",
+            },
         },
         nome: {
             type: sequelize.STRING,
-            allowNull: false
-        },
-        genero: {
-            type: sequelize.STRING,
-            allowNull: false
+            allowNull: false,
         },
         idade: {
             type: sequelize.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
-        dta_registo: {
+        genero: {
             type: sequelize.STRING,
-            allowNull: true
-        },
-        dta_atualizacao: {
-            type: sequelize.STRING,
-            allowNull: true
+            allowNull: false,
         },
     },
     {
         tableName: "condutor",
-        timestamps: true
+        timestamps: true,
+        createdAt: "dta_registo",
+        updatedAt: "dta_atualizacao",
     }
 );
+
+// Associations
+// Condutor belongs to one Viagem
+Condutor.belongsTo(Viagem, {
+  foreignKey: "id_viagem",
+  as: "viagem",
+  onDelete: "RESTRICT",
+  onUpdate: "RESTRICT",
+});
+
+Viagem.hasMany(Condutor, { foreignKey: 'id_viagem', as: 'condutores' });
 
 module.exports = Condutor;

@@ -7,7 +7,7 @@ let Autocarro = conexao.define(
         id_autocarro: {
             type: sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: false,
+            autoIncrement: true,
         },
         matricula: {
             type: sequelize.STRING,
@@ -17,19 +17,12 @@ let Autocarro = conexao.define(
             type: sequelize.INTEGER,
             allowNull: false
         },
-
-        dta_registo: {
-            type: sequelize.STRING,
-            allowNull: true
-        },
-        dta_atualizacao: {
-            type: sequelize.STRING,
-            allowNull: true
-        },
     },
     {
         tableName: "autocarro",
-        timestamps: true
+        timestamps: true,
+        createdAt: "dta_registo",
+        updatedAt: "dta_atualizacao",
     }
 );
 

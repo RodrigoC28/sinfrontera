@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 02, 2025 at 01:18 AM
+-- Generation Time: Jun 03, 2025 at 07:01 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -36,7 +36,14 @@ CREATE TABLE IF NOT EXISTS `autocarro` (
   `dta_atualizacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_autocarro`),
   UNIQUE KEY `matricula` (`matricula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `autocarro`
+--
+
+INSERT INTO `autocarro` (`id_autocarro`, `matricula`, `capacidade`, `dta_registo`, `dta_atualizacao`) VALUES
+(1, 'MN-58-PB', 30, '2025-06-02 17:44:35', '2025-06-02 22:56:21');
 
 -- --------------------------------------------------------
 
@@ -55,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `condutor` (
   `dta_atualizacao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_condutor`),
   KEY `id_viagem` (`id_viagem`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -71,7 +78,14 @@ CREATE TABLE IF NOT EXISTS `paragem` (
   `dta_registo` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `dta_atualizacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_paragem`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `paragem`
+--
+
+INSERT INTO `paragem` (`id_paragem`, `nome`, `coordenadas`, `dta_registo`, `dta_atualizacao`) VALUES
+(2, 'Coimbra', '40.2115, -8.4292', '2025-06-02 23:30:54', '2025-06-03 03:22:37');
 
 -- --------------------------------------------------------
 
@@ -92,7 +106,15 @@ CREATE TABLE IF NOT EXISTS `utilizador` (
   `dta_atualizacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_utilizador`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `utilizador`
+--
+
+INSERT INTO `utilizador` (`id_utilizador`, `tipo_utilizador`, `nome`, `sobrenome`, `email`, `password`, `telemovel`, `dta_registo`, `dta_atualizacao`) VALUES
+(2, 'cliente', 'asd', 'asd', 'asd@dsa.pt', '$2b$10$YGx0lkDMrhvDaGCsTJvNleYqO8nm1egO1zwohZAYGesEdO0d/ltLG', '912345678', '2025-06-02 04:26:34', '2025-06-02 04:26:34'),
+(3, 'cliente', 'asd', 'asd', 'sadasd@asd.pt', '$2b$10$Cw8/40IDeRibWo3Gi04Li.m0dHrP24yYKbLpOGdiJHp7LhASlRXgO', '1464654', '2025-06-02 20:17:01', '2025-06-02 20:17:01');
 
 -- --------------------------------------------------------
 
@@ -112,7 +134,14 @@ CREATE TABLE IF NOT EXISTS `viagem` (
   `dta_atualizacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_viagem`),
   KEY `id_autocarro` (`id_autocarro`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `viagem`
+--
+
+INSERT INTO `viagem` (`id_viagem`, `id_autocarro`, `data`, `hora_partida`, `hora_chegada`, `preco`, `dta_registo`, `dta_atualizacao`) VALUES
+(4, 1, '2025-06-26', '14:59:00', '10:00:00', 50.00, '2025-06-03 06:00:06', '2025-06-03 06:00:06');
 
 -- --------------------------------------------------------
 
@@ -130,6 +159,13 @@ CREATE TABLE IF NOT EXISTS `viagem_paragem` (
   PRIMARY KEY (`id_viagem`,`id_paragem`),
   KEY `id_paragem` (`id_paragem`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `viagem_paragem`
+--
+
+INSERT INTO `viagem_paragem` (`id_viagem`, `id_paragem`, `hora`, `dta_registo`, `dta_atualizacao`) VALUES
+(4, 2, '09:50:00', '2025-06-03 06:50:12', '2025-06-03 06:50:12');
 
 -- --------------------------------------------------------
 

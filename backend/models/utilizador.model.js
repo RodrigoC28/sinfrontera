@@ -11,7 +11,8 @@ let Utilizador = conexao.define(
         },
         tipo_utilizador: {
             type: sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 'cliente'
         },
         nome: {
             type: sequelize.STRING,
@@ -23,7 +24,11 @@ let Utilizador = conexao.define(
         },
         email: {
             type: sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true,
+            validate: {
+                isEmail: true,
+            },
         },
         password: {
             type: sequelize.STRING,
@@ -33,18 +38,12 @@ let Utilizador = conexao.define(
             type: sequelize.STRING,
             allowNull: true
         },
-        dta_registo: {
-            type: sequelize.STRING,
-            allowNull: true
-        },
-        dta_atualizacao: {
-            type: sequelize.STRING,
-            allowNull: true
-        },
     },
     {
         tableName: "utilizador",
-        timestamps: true
+        timestamps: true,
+        createdAt: "dta_registo",
+        updatedAt: "dta_atualizacao",
     }
 );
 
