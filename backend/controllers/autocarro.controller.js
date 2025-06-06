@@ -5,7 +5,7 @@ const autocarroController = {};
 // Criar um novo autocarro
 autocarroController.createAutocarro = async (req, res) => {
   const { matricula, capacidade } = req.body;
-  
+
   try {
     const dados = await Autocarro.create({ matricula, capacidade });
     res.status(201).json({
@@ -48,21 +48,21 @@ autocarroController.getAutocarroById = async (req, res) => {
       where: { id_autocarro: id },
     });
     if (!dados) {
-        return res.status(404).json({
-            status: "error",
-            message: "Autocarro não encontrado.",
-        });
+      return res.status(404).json({
+        status: "error",
+        message: "Autocarro não encontrado.",
+      });
     }
     res.status(200).json({
-        status: "success",
-        message: "Autocarro encontrado com sucesso.",
-        data: dados,
+      status: "success",
+      message: "Autocarro encontrado com sucesso.",
+      data: dados,
     });
-    } catch (error) {
+  } catch (error) {
     res.status(500).json({
-        status: "error",
-        message: "Ocorreu um erro ao obter o autocarro.",
-        data: null,
+      status: "error",
+      message: "Ocorreu um erro ao obter o autocarro.",
+      data: null,
     });
   }
 };
@@ -74,8 +74,8 @@ autocarroController.updateAutocarro = async (req, res) => {
   try {
     const dados = await Autocarro.update(
       {
-        matricula: matricula, 
-        capacidade: capacidade 
+        matricula: matricula,
+        capacidade: capacidade
       },
       {
         where: { id_autocarro: id }
@@ -90,17 +90,17 @@ autocarroController.updateAutocarro = async (req, res) => {
     }
 
     res.status(200).json({
-        status: "success",
-        message: "Autocarro atualizado com sucesso.",
-        data: dados,
+      status: "success",
+      message: "Autocarro atualizado com sucesso.",
+      data: dados,
     });
-    } catch (error) {
-        res.status(500).json({
-            status: "error",
-            message: "Ocorreu um erro ao atualizar autocarro.",
-            data: null,
-        });
-    }
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Ocorreu um erro ao atualizar autocarro.",
+      data: null,
+    });
+  }
 };
 
 // Apagar um autocarro
@@ -119,19 +119,19 @@ autocarroController.deleteAutocarro = async (req, res) => {
     }
 
     res.status(204).json({
-        status: "success",
-        message: "Autocarro apagado com sucesso.",
-        data: dados,
+      status: "success",
+      message: "Autocarro apagado com sucesso.",
+      data: dados,
     });
     console.log(`Autocarro com ID ${id} apagado com sucesso.`);
-    } catch (error) {
-        res.status(500).json({
-            status: "error",
-            message: "Ocorreu um erro ao apagar autocarro.",
-            data: null,
-        });
-        console.error(`Erro ao apagar autocarro com ID ${id}:`, error);
-    }
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Ocorreu um erro ao apagar autocarro.",
+      data: null,
+    });
+    console.error(`Erro ao apagar autocarro com ID ${id}:`, error);
+  }
 };
 
 module.exports = autocarroController;

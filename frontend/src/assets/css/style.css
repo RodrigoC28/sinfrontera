@@ -55,3 +55,7 @@
     --bs-btn-disabled-bg: #D87C58;
     --bs-btn-disabled-border-color: #D87C58;
 }
+
+.text-orange {
+  color: #BC5931;
+}

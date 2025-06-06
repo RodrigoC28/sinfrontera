@@ -70,10 +70,10 @@ function App() {
           <Route path="/autocarros/criar" Component={CriarAutocarros} />
           <Route path="/autocarros/editar/:id" Component={EditarAutocarros} />
 
-          <Route path="/reservas" Component={ListarReservas} />
+          <Route path="/reservas/:id" Component={ListarReservas} />
           <Route path="/reservas/disponiveis" Component={ListarViagensDisponiveis} />
-          <Route path="/booking" Component={CriarReservas} />
-          <Route path="/confirm" Component={ViagemComprada} />
+          <Route path="/reservas/booking/:id" Component={CriarReservas} />
+          <Route path="/reservas/confirmacao" Component={ViagemComprada} />
 
         </Routes>
       <Footer />

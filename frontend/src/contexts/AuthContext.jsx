@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect  } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import AuthService from "../services/auth.service";
 
 export const AuthContext = createContext();
@@ -7,7 +7,7 @@ export const useAuth = () => useContext(AuthContext);
 
 // Provider do contexto
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem("user"));
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   const login = async (email, password) => {
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

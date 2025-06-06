@@ -84,7 +84,7 @@ const ListarDestinos = () => {
   <>
     <div className="container mt-4">
         <div className="d-flex justify-content-between align-items-center mb-4">
-                    <h2 className="mb-0">Lista de Viagens</h2>
+                    <h2 className="mb-0">Lista de Destinos</h2>
                         <Link to="/destinos/criar" className="btn custom-btn">
                             <i className="fas fa-plus me-2"></i>Criar Novo Destino
                         </Link>

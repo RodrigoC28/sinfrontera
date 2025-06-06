@@ -76,8 +76,8 @@ paragemController.updateParagem = async (req, res) => {
   try {
     const dados = await Paragem.update(
       {
-        nome: nome, 
-        coordenadas: coordenadas 
+        nome: nome,
+        coordenadas: coordenadas
       },
       {
         where: { id_paragem: id }

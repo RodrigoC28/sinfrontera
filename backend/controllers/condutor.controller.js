@@ -19,7 +19,6 @@ condutorController.createCondutor = async (req, res) => {
       message: "Ocorreu um erro ao criar o condutor.",
       data: null,
     });
-    console.error("Erro ao criar condutor:", error);
   }
 };
 
@@ -27,7 +26,7 @@ condutorController.createCondutor = async (req, res) => {
 condutorController.getAllCondutores = async (req, res) => {
   try {
     const dados = await Condutor.findAll({
-        include: [{ model: Viagem, as: 'viagem' }] // Inclui detalhes da Viagem
+      include: [{ model: Viagem, as: 'viagem' }] // Inclui detalhes da Viagem
     });
     res.status(200).json({
       status: "success",
@@ -47,10 +46,10 @@ condutorController.getAllCondutores = async (req, res) => {
 condutorController.getCondutorById = async (req, res) => {
   const { id } = req.params;
   try {
-    const dados = await Condutor.findOne({where: { id_condutor: id } }, 
-    {
+    const dados = await Condutor.findOne({ where: { id_condutor: id } },
+      {
         include: [{ model: Viagem, as: 'viagem' }]
-    });
+      });
     if (!dados) {
       return res.status(404).json({
         status: "error",

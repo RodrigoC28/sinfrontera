@@ -14,9 +14,9 @@ router.post("/utilizador/login", utilizadorController.login);
 router.post("/utilizador/logout", utilizadorController.logout);
 
 router.get("/utilizadores", middleware.checkToken, utilizadorController.getAllUtilizadores); // Protected
-router.get("/utilizadores/:id", middleware.checkToken, utilizadorController.getUtilizadorById); // Protected
-router.put("/utilizadores/:id", middleware.checkToken, utilizadorController.updateUtilizador); // Protected
-router.delete("/utilizadores/:id", middleware.checkToken, utilizadorController.deleteUtilizador); // Protected
+router.get("/utilizador/:id", middleware.checkToken, utilizadorController.getUtilizadorById); // Protected
+router.put("/utilizador/:id", middleware.checkToken, utilizadorController.updateUtilizador); // Protected
+router.delete("/utilizador/:id", middleware.checkToken, utilizadorController.deleteUtilizador); // Protected
 
 
 module.exports = router;

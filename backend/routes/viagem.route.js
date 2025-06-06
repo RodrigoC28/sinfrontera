@@ -10,13 +10,15 @@ router.get("/viagem/:id", middleware.checkToken, viagemController.getViagemById)
 router.put("/viagem/:id", middleware.checkToken, viagemController.updateViagem);
 router.delete("/viagem/:id", middleware.checkToken, viagemController.deleteViagem);
 
-
 // Viagem - Utilizadores (Reservas)
+router.get('/procurar/', viagemController.procurarViagensDisponiveis);
 router.post(
-    "/viagens/:id_viagem/utilizadores/:id_utilizador/reserva", // More descriptive path
+    "/viagens/:id_viagem/utilizadores/:id_utilizador",
     middleware.checkToken,
     viagemController.addUtilizadorToViagem
 );
+router.get("/minhas-viagens/:id", middleware.checkToken, viagemController.getMinhasReservas);
 
+router.delete("/reserva/:id_viagem/:id_utilizador", middleware.checkToken, viagemController.deleteReserva);
 
 module.exports = router;

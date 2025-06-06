@@ -53,15 +53,13 @@ utilizadorController.login = async (req, res) => {
       });
     }
 
-    // Gerar o token JWT
-    // Payload should ideally contain non-sensitive user identifiers like id and role
     const payload = {
-        id: utilizador.id_utilizador,
-        email: utilizador.email,
-        tipo_utilizador: utilizador.tipo_utilizador // Include user type/role if needed for authorization
+      id: utilizador.id_utilizador,
+      email: utilizador.email,
+      tipo_utilizador: utilizador.tipo_utilizador
     };
-    const token = jwt.sign(payload, config.secret, { // Use config.secret
-      expiresIn: config.timer, // Use config.timer (e.g., '1h', '7d')
+    const token = jwt.sign(payload, config.secret, {
+      expiresIn: config.timer,
     });
 
     res.status(200).json({
@@ -86,7 +84,7 @@ utilizadorController.login = async (req, res) => {
 
 // Renovar o token JWT
 utilizadorController.refreshToken = async (req, res) => {
-    const { token } = req.body;
+  const { token } = req.body;
 
   try {
     if (!token) {
@@ -98,15 +96,14 @@ utilizadorController.refreshToken = async (req, res) => {
 
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
-            return res.status(403).json({
-                success: false,
-                message: "Token inválido ou expirado.",
-            });
+        return res.status(403).json({
+          success: false,
+          message: "Token inválido ou expirado.",
+        });
       }
 
-      // Generate new token with the same payload or updated if necessary
       const payload = {
-        id: decoded.id, // Use id from the decoded token
+        id: decoded.id,
         email: decoded.email,
         tipo_utilizador: decoded.tipo_utilizador
       };
@@ -136,7 +133,7 @@ utilizadorController.logout = async (req, res) => {
       success: true,
       message: "Logout realizado com sucesso.",
     });
-    console.log("Utilizador deslogado com sucesso.");
+
   } catch (error) {
     res.status(500).json({
       status: "error",
@@ -147,7 +144,7 @@ utilizadorController.logout = async (req, res) => {
 };
 
 
-// Obter todos os utilizadores (Protected - Admin only ideally)
+// Obter todos os utilizadores
 utilizadorController.getAllUtilizadores = async (req, res) => {
   try {
     const utilizadores = await Utilizador.findAll({
@@ -162,7 +159,7 @@ utilizadorController.getAllUtilizadores = async (req, res) => {
     res.status(500).json({
       status: "error",
       message: "Ocorreu um erro ao obter os utilizadores.",
-      details: error.message,
+      data: null,
     });
   }
 };
@@ -171,15 +168,10 @@ utilizadorController.getAllUtilizadores = async (req, res) => {
 utilizadorController.getUtilizadorById = async (req, res) => {
   const { id } = req.params;
   try {
-    const utilizador = await Utilizador.findByPk(id, {
-        attributes: { exclude: ['password'] }
+    const utilizador = await Utilizador.findOne({
+      attributes: { exclude: ['password'] },
+      where: { id_utilizador: id },
     });
-    if (!utilizador) {
-      return res.status(404).json({
-        status: "error",
-        message: "Utilizador não encontrado.",
-      });
-    }
     res.status(200).json({
       status: "success",
       message: "Utilizador encontrado com sucesso.",
@@ -189,97 +181,67 @@ utilizadorController.getUtilizadorById = async (req, res) => {
     res.status(500).json({
       status: "error",
       message: "Ocorreu um erro ao obter o utilizador.",
-      details: error.message,
+      data: null,
     });
   }
 };
 
-// Atualizar um utilizador
 utilizadorController.updateUtilizador = async (req, res) => {
   const { id } = req.params;
   const { tipo_utilizador, nome, sobrenome, email, telemovel, password } = req.body;
-  
-  const updateData = {};
-  if (tipo_utilizador !== undefined) updateData.tipo_utilizador = tipo_utilizador;
-  if (nome !== undefined) updateData.nome = nome;
-  if (sobrenome !== undefined) updateData.sobrenome = sobrenome;
-  if (email !== undefined) updateData.email = email;
-  if (telemovel !== undefined) updateData.telemovel = telemovel;
-
-  // If password is being updated, hash it
-  if (password) {
-    try {
-        updateData.password = await bcrypt.hash(password, 10);
-    } catch(hashError) {
-        return res.status(500).json({
-            status: "error",
-            message: "Ocorreu um erro ao processar a nova senha.",
-            details: hashError.message,
-        });
-    }
-  }
-
   try {
-    const [updatedRows] = await Utilizador.update(
-      updateData,
-      { where: { id_utilizador: id } }
+    const dados = await Utilizador.update(
+      {
+        tipo_utilizador: tipo_utilizador,
+        nome: nome,
+        sobrenome: sobrenome,
+        email: email,
+        telemovel: telemovel,
+        password: password ? await bcrypt.hash(password, 10) : undefined
+      },
+      {
+        where: { id_utilizador: id }
+      }
     );
-    if (updatedRows === 0) {
+
+    if (!dados) {
       return res.status(404).json({
         status: "error",
-        message: "Utilizador não encontrado para atualização.",
+        message: "Utilizador não encontrado.",
       });
     }
-    const updatedUtilizador = await Utilizador.findByPk(id, {
-        attributes: { exclude: ['password'] }
-    });
+
     res.status(200).json({
       status: "success",
       message: "Utilizador atualizado com sucesso.",
-      data: updatedUtilizador,
+      data: dados,
     });
   } catch (error) {
-    if (error.name === 'SequelizeUniqueConstraintError') {
-        return res.status(409).json({
-            status: "error",
-            message: "O email fornecido já está em uso por outro utilizador.",
-            details: error.errors ? error.errors.map(e => e.message) : error.message,
-        });
-    }
     res.status(500).json({
       status: "error",
-      message: "Ocorreu um erro ao atualizar o utilizador.",
-      details: error.message,
+      message: "Ocorreu um erro ao atualizar utilizador.",
+      data: null,
     });
   }
 };
 
-// Apagar um utilizador
 utilizadorController.deleteUtilizador = async (req, res) => {
   const { id } = req.params;
   try {
-    const deletedRows = await Utilizador.destroy({
+    const dados = await Utilizador.destroy({
       where: { id_utilizador: id },
     });
-    if (deletedRows === 0) {
-      return res.status(404).json({
-        status: "error",
-        message: "Utilizador não encontrado para apagar.",
-      });
-    }
-    res.status(204).json(); // No content, standard for successful DELETE
+
+    res.status(204).json({
+      status: "success",
+      message: "Utilizador apagado com sucesso.",
+      data: dados,
+    });
   } catch (error) {
-    if (error.name === 'SequelizeForeignKeyConstraintError') {
-        return res.status(409).json({
-            status: "error",
-            message: "Não é possível apagar o utilizador pois existem dados associados (ex: reservas ativas).",
-            details: error.message,
-        });
-    }
     res.status(500).json({
       status: "error",
-      message: "Ocorreu um erro ao apagar o utilizador.",
-      details: error.message,
+      message: "Ocorreu um erro ao apagar utilizador.",
+      data: null,
     });
   }
 };

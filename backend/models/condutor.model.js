@@ -40,13 +40,11 @@ let Condutor = conexao.define(
     }
 );
 
-// Associations
-// Condutor belongs to one Viagem
 Condutor.belongsTo(Viagem, {
-  foreignKey: "id_viagem",
-  as: "viagem",
-  onDelete: "RESTRICT",
-  onUpdate: "RESTRICT",
+    foreignKey: "id_viagem",
+    as: "viagem",
+    onDelete: "RESTRICT",
+    onUpdate: "RESTRICT",
 });
 
 Viagem.hasMany(Condutor, { foreignKey: 'id_viagem', as: 'condutores' });

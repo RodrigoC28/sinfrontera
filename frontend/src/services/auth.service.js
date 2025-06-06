@@ -23,7 +23,6 @@ class AuthService {
   }
 
   async logout() {
-    // Se tiveres endpoint de logout, chama-o aqui
     await axios.post("http://localhost:5000/api/v1/logout");
   }
 }

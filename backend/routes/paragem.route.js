@@ -9,7 +9,7 @@ const paragemController = require("../controllers/paragem.controller");
 
 // Rotas para Paragem
 router.post("/paragem", middleware.checkToken, paragemController.createParagem);
-router.get("/paragens", middleware.checkToken, paragemController.getAllParagens);
+router.get("/paragens", paragemController.getAllParagens);
 router.get("/paragem/:id", middleware.checkToken, paragemController.getParagemById);
 router.put("/paragem/:id", middleware.checkToken, paragemController.updateParagem);
 router.delete("/paragem/:id", middleware.checkToken, paragemController.deleteParagem);
